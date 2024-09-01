@@ -1,0 +1,16 @@
+<svg width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="TimerQ-logo-light">
+<rect id="bg" width="220" height="220" rx="35" fill="black"/>
+<circle id="mg" cx="110" cy="110" r="70" fill="white"/>
+<g id="q">
+<rect id="q_2" x="133" y="147.142" width="20" height="60" transform="rotate(-45 133 147.142)" fill="white"/>
+<rect id="bot" x="167" y="182" width="16" height="15" fill="black"/>
+<rect id="top" x="182" y="167" width="15" height="16" fill="black"/>
+</g>
+<g id="t">
+<rect id="bot_2" x="102" y="32" width="15" height="20" fill="white"/>
+<rect id="top_2" x="90" y="17" width="40" height="15" rx="5" fill="white"/>
+</g>
+<path id="timer" d="M110 55C119.045 55 127.95 57.2306 135.927 61.4943C143.904 65.758 150.706 71.9232 155.731 79.4436C160.756 86.9641 163.849 95.6078 164.735 104.609C165.622 113.61 164.275 122.691 160.813 131.048C157.352 139.404 151.883 146.778 144.892 152.516C137.9 158.254 129.601 162.179 120.73 163.943C111.859 165.708 102.69 165.257 94.0343 162.632C85.379 160.006 77.5048 155.287 71.1091 148.891L110 110V55Z" fill="black"/>
+</g>
+</svg>
