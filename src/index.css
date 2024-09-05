@@ -72,68 +72,6 @@ p {
   overflow-wrap: break-word;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  text-wrap: balance;
-}
-
-@supports (text-wrap: pretty) {
-  p {
-    hyphens: auto;
-    text-wrap: pretty;
-  }
-}
-
-p {
-  max-width: 75ch;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 #root {
   isolation: isolate;
-}
-
-/*  */
-
-:root {
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --color-text: hsl(219, 92%, 5%);
-    --color-background: hsl(228, 100%, 99%);
-    --color-primary: hsl(222, 98%, 23%);
-    --color-secondary: hsl(213, 68%, 84%);
-    --color-accent: hsl(220, 75%, 72%);
-    --color-status-red: hsl(4, 91%, 69%);
-    --color-status-yellow: hsl(47, 97%, 45%);
-    --color-status-green: hsl(155, 57%, 55%);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-text: hsl(219, 92%, 95%);
-    --color-background: hsl(228, 100%, 1%);
-    --color-primary: hsl(222, 98%, 77%);
-    --color-secondary: hsl(213, 68%, 16%);
-    --color-accent: hsl(220, 75%, 28%);
-    --color-status-red: hsl(4, 91%, 31%);
-    --color-status-yellow: hsl(47, 97%, 55%);
-    --color-status-green: hsl(155, 57%, 45%);
-  }
-}
-
-body {
-  background-color: var(--color-background);
-  color: var(--color-text);
 }
