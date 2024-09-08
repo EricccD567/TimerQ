@@ -1,14 +1,14 @@
 import { createContext } from 'react';
+import { ColorPalette } from './shared.types';
 
-// typing here?
-// default light mode
-export const ColorPaletteContext = createContext({
-  text: 'hsl(219, 92%, 5%)',
-  background: 'hsl(228, 100%, 99%)',
-  primary: 'hsl(222, 98%, 23%)',
-  secondary: 'hsl(213, 68%, 84%)',
-  accent: 'hsl(220, 75%, 72%)',
-  redStatus: 'hsl(4, 91%, 69%)',
-  yellowStatus: 'hsl(47, 97%, 45%)',
-  greenStatus: 'hsl(155, 57%, 55%)',
+// Default light mode color palette.
+export const ColorPaletteContext = createContext<ColorPalette>({
+  text: '#06080e',
+  background: '#fbfcfd',
+  primary: '#01267e',
+  secondary: '#bfd6f3',
+  accent: '#90b0ef',
+  redStatus: '#f76054',
+  yellowStatus: '#e2b103',
+  greenStatus: '#4bce98',
 });

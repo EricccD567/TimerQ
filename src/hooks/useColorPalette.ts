@@ -1,20 +1,18 @@
 import { useColorModeValue } from '@chakra-ui/react';
+import { ColorPalette } from '../shared.types';
 
-function useColorPalette() {
-  const text = useColorModeValue('text.light', 'text.dark');
-  const background = useColorModeValue('background.light', 'background.dark');
-  const primary = useColorModeValue('primary.light', 'primary.dark');
-  const secondary = useColorModeValue('secondary.light', 'secondary.dark');
-  const accent = useColorModeValue('accent.light', 'accent.dark');
-  const redStatus = useColorModeValue('redStatus.light', 'redStatus.dark');
+export function useColorPalette() {
+  const text = useColorModeValue('text.900', 'text.50');
+  const background = useColorModeValue('background.50', 'background.800');
+  const primary = useColorModeValue('primary.700', 'primary.200');
+  const secondary = useColorModeValue('secondary.100', 'secondary.800');
+  const accent = useColorModeValue('accent.200', 'accent.700');
+  const redStatus = useColorModeValue('redStatus.300', 'redStatus.600');
   const yellowStatus = useColorModeValue(
-    'yellowStatus.light',
-    'yellowStatus.dark'
+    'yellowStatus.500',
+    'yellowStatus.400'
   );
-  const greenStatus = useColorModeValue(
-    'greenStatus.light',
-    'greenStatus.dark'
-  );
+  const greenStatus = useColorModeValue('greenStatus.400', 'greenStatus.500');
 
   return {
     text,
@@ -25,7 +23,5 @@ function useColorPalette() {
     redStatus,
     yellowStatus,
     greenStatus,
-  };
+  } as ColorPalette;
 }
-
-export default useColorPalette;

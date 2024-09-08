@@ -9,6 +9,8 @@ import {
 import App from './App.tsx';
 import './index.css';
 
+// System sets initial value.
+// App subscribes to system color mode changes.
 const config: ThemeConfig = {
   initialColorMode: 'system',
   useSystemColorMode: true,
@@ -16,36 +18,84 @@ const config: ThemeConfig = {
 
 const colors = {
   text: {
-    light: 'hsl(219, 92%, 5%)',
-    dark: 'hsl(219, 92%, 95%)',
+    50: '#f1f3f9', // dark
+    900: '#06080e', // light
   },
   background: {
-    light: 'hsl(228, 100%, 99%)',
-    dark: 'hsl(228, 100%, 1%)',
+    50: '#fbfcfd', // light
+    800: '#1d262f', // dark
   },
   primary: {
-    light: 'hsl(222, 98%, 23%)',
-    dark: 'hsl(222, 98%, 77%)',
+    50: '#e2edff',
+    100: '#b2c9ff',
+    200: '#81a6fe', // dark
+    300: '#5082fc',
+    400: '#225efb',
+    500: '#0f45e2',
+    600: '#0735b0',
+    700: '#01267e', // light
+    800: '#00174e',
+    900: '#00081e',
   },
   secondary: {
-    light: 'hsl(213, 68%, 84%)',
-    dark: 'hsl(213, 68%, 16%)',
+    50: '#e7f1ff',
+    100: '#bfd6f3', // light
+    200: '#96bbe8',
+    300: '#6d9fdf',
+    400: '#4784d6',
+    500: '#2f6abc',
+    600: '#245393',
+    700: '#183b69',
+    800: '#0c2340', // dark
+    900: '#000c19',
   },
   accent: {
-    light: 'hsl(220, 75%, 72%)',
-    dark: 'hsl(220, 75%, 28%)',
+    50: '#e5efff',
+    100: '#bacff8',
+    200: '#90b0ef', // light
+    300: '#6490e8',
+    400: '#3a70e0',
+    500: '#2357c7',
+    600: '#19439b',
+    700: '#10306f', // dark
+    800: '#071d45',
+    900: '#000a1b',
   },
   redStatus: {
-    light: 'hsl(4, 91%, 69%)',
-    dark: 'hsl(4, 91%, 31%)',
+    50: '#ffe5e3',
+    100: '#ffbab4',
+    200: '#fa8c84',
+    300: '#f76054', // light
+    400: '#f43325',
+    500: '#da1b0b',
+    600: '#ab1308', // dark
+    700: '#7b0c05',
+    800: '#4b0500',
+    900: '#1f0000',
   },
   yellowStatus: {
-    light: 'hsl(47, 97%, 45%)',
-    dark: 'hsl(47, 97%, 55%)',
+    50: '#fff9db',
+    100: '#ffeeae',
+    200: '#fde27e',
+    300: '#fdd64d',
+    400: '#fccb1d', // dark
+    500: '#e2b103', // light
+    600: '#b08a00',
+    700: '#7e6300',
+    800: '#4c3b00',
+    900: '#1c1400',
   },
   greenStatus: {
-    light: 'hsl(155, 57%, 55%)',
-    dark: 'hsl(155, 57%, 45%)',
+    50: '#e0fdf2',
+    100: '#bdf0dc',
+    200: '#98e5c5',
+    300: '#71d9af',
+    400: '#4bce98', // light
+    500: '#31b47e', // dark
+    600: '#238c62',
+    700: '#156445',
+    800: '#063d29',
+    900: '#00160b',
   },
 };
 
@@ -54,7 +104,10 @@ const theme = extendTheme({ config, colors });
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ChakraProvider theme={theme}>
-      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <ColorModeScript
+        initialColorMode={config.initialColorMode}
+        nonce="false"
+      />
       <App />
     </ChakraProvider>
   </StrictMode>

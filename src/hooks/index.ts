@@ -1,3 +1,3 @@
-import useColorPalette from './useColorPalette';
+import { useColorPalette } from './useColorPalette';
 
 export { useColorPalette };
