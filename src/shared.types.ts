@@ -8,3 +8,8 @@ export interface ColorPalette {
   yellowStatus: string;
   greenStatus: string;
 }
+
+export interface HandleModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}

@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import {
   Flex,
   Heading,
@@ -16,11 +15,10 @@ import {
   TbTrash,
 } from 'react-icons/tb';
 import timerqLogo from '../assets/TimerQ-logo.svg';
-import { ColorPaletteContext } from '../ColorPaletteContext';
+import ResetConfirmationModal from './ResetConfirmationModal';
+import SettingsModal from './SettingsModal';
 
 function HeaderBar() {
-  const colorPalette = useContext(ColorPaletteContext);
-
   const { colorMode, toggleColorMode } = useColorMode();
 
   const {
@@ -36,55 +34,61 @@ function HeaderBar() {
   } = useDisclosure();
 
   return (
-    <Flex
-      as="header"
-      wrap="nowrap"
-      align="center"
-      gap="2"
-      bgColor={colorPalette.background}
-      pl="5"
-      pr="2.5"
-      py="2"
-      mb="2"
-      pos="sticky"
-      top="0"
-    >
-      <Link href="https://github.com/EricccD567/TimerQ" isExternal>
-        <Image src={timerqLogo} alt="TimerQ logo" boxSize="7" />
-      </Link>
-      <Heading as="h1" size="md" color={colorPalette.text}>
-        TimerQ
-      </Heading>
-      <Spacer />
-      <IconButton
-        icon={<TbTrash />}
-        aria-label="reset"
-        colorScheme="redStatus"
-        variant="ghost"
-        size="md"
-        fontSize="20px"
-        isRound={true}
+    <>
+      <Flex
+        as="header"
+        align="center"
+        gap="2"
+        pl="5"
+        pr="2.5"
+        py="2"
+        pos="sticky"
+        top="0"
+      >
+        <Link href="https://github.com/EricccD567/TimerQ" isExternal>
+          <Image src={timerqLogo} alt="TimerQ logo" boxSize="7" />
+        </Link>
+        <Heading as="h1" size="md">
+          TimerQ
+        </Heading>
+        <Spacer />
+        <IconButton
+          icon={<TbTrash />}
+          onClick={onResetConfirmationOpen}
+          aria-label="reset"
+          colorScheme="redStatus"
+          variant="ghost"
+          size="md"
+          fontSize="20px"
+          isRound
+        />
+        <IconButton
+          icon={colorMode === 'light' ? <TbMoonFilled /> : <TbSunFilled />}
+          onClick={toggleColorMode}
+          aria-label="light dark mode"
+          colorScheme="primary"
+          variant="ghost"
+          size="md"
+          fontSize="20px"
+          isRound
+        />
+        <IconButton
+          icon={<TbSettingsFilled />}
+          onClick={onSettingsOpen}
+          aria-label="settings"
+          colorScheme="primary"
+          variant="ghost"
+          size="md"
+          fontSize="20px"
+          isRound
+        />
+      </Flex>
+      <ResetConfirmationModal
+        isOpen={isResetConfirmationOpen}
+        onClose={onResetConfirmationClose}
       />
-      <IconButton
-        icon={colorMode === 'light' ? <TbMoonFilled /> : <TbSunFilled />}
-        onClick={toggleColorMode}
-        aria-label="light dark mode"
-        colorScheme="primary"
-        variant="ghost"
-        size="md"
-        fontSize="20px"
-        isRound={true}
-      />
-      <IconButton
-        icon={<TbSettingsFilled />}
-        aria-label="settings"
-        colorScheme="primary"
-        variant="ghost"
-        size="md"
-        fontSize="20px"
-        isRound={true}
-      />
-    </Flex>
+      <SettingsModal isOpen={isSettingsOpen} onClose={onSettingsClose} />
+    </>
   );
 }
 

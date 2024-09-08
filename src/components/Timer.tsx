@@ -13,6 +13,7 @@ function Timer({
 export default Timer;
 
 // add, previous, playpause, next, restart
+// cross, tick
 // stop, edit, delete
 
 // import { useEffect, useRef, useState } from 'react';
@@ -30,8 +31,6 @@ export default Timer;
 //   PinInputField,
 //   Text,
 // } from '@chakra-ui/react';
-// import { IoMdAdd } from 'react-icons/io';
-// import { FaPlay, FaPause } from 'react-icons/fa6';
 // import Countdown from 'react-countdown';
 // import Timer from './components/Timer';
 

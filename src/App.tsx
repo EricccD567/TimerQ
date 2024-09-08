@@ -1,17 +1,24 @@
-import { Box } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { ColorPaletteContext } from './ColorPaletteContext';
 import { useColorPalette } from './hooks';
-import { HeaderBar } from './containers';
+import { ControlsBar, HeaderBar } from './containers';
 
 function App() {
   const colorPalette = useColorPalette();
 
   return (
-    <Box>
+    <Flex
+      direction="column"
+      justify="space-between"
+      minH="100svh"
+      bgColor={colorPalette.background}
+      color={colorPalette.text}
+    >
       <ColorPaletteContext.Provider value={colorPalette}>
         <HeaderBar />
+        <ControlsBar />
       </ColorPaletteContext.Provider>
-    </Box>
+    </Flex>
   );
 }
 
