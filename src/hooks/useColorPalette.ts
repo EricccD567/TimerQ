@@ -1,7 +1,7 @@
 import { useColorModeValue } from '@chakra-ui/react';
 import { ColorPalette } from '../shared.types';
 
-export function useColorPalette() {
+export function useColorPalette(): ColorPalette {
   const text = useColorModeValue('text.900', 'text.50');
   const background = useColorModeValue('background.50', 'background.800');
   const primary = useColorModeValue('primary.700', 'primary.200');
@@ -23,5 +23,5 @@ export function useColorPalette() {
     redStatus,
     yellowStatus,
     greenStatus,
-  } as ColorPalette;
+  };
 }

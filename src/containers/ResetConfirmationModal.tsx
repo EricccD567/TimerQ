@@ -12,15 +12,23 @@ import {
 import { ColorPaletteContext } from '../ColorPaletteContext';
 import { HandleModalProps } from '../shared.types';
 
-interface ResetConfirmationModalProps extends HandleModalProps {}
+interface ResetConfirmationModalProps extends HandleModalProps {
+  onReset: () => void;
+}
 
 function ResetConfirmationModal({
+  onReset,
   isOpen,
   onClose,
 }: ResetConfirmationModalProps) {
   const colorPalette = useContext(ColorPaletteContext);
 
   const cancelRef = useRef<HTMLButtonElement>(null!);
+
+  const handleReset: () => void = () => {
+    onReset();
+    onClose();
+  };
 
   return (
     <AlertDialog
@@ -49,10 +57,9 @@ function ResetConfirmationModal({
               Cancel
             </Button>
             <Button
-              onClick={onClose}
+              onClick={handleReset}
               variant="solid"
               colorScheme="redStatus"
-              isDisabled
             >
               Delete
             </Button>

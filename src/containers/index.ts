@@ -3,6 +3,7 @@ import HeaderBar from './HeaderBar';
 import ResetConfirmationModal from './ResetConfirmationModal';
 import SettingsModal from './SettingsModal';
 import TimerSetterModal from './TimerSetterModal';
+import TimersList from './TimersList';
 
 export {
   ControlsBar,
@@ -10,4 +11,5 @@ export {
   ResetConfirmationModal,
   SettingsModal,
   TimerSetterModal,
+  TimersList,
 };

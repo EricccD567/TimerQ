@@ -4,6 +4,7 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
+  ModalFooter,
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/react';
@@ -27,7 +28,16 @@ function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
       <ModalContent bgColor={colorPalette.background} color={colorPalette.text}>
         <ModalHeader fontWeight="bold">Settings</ModalHeader>
         <ModalCloseButton size="lg" />
-        <ModalBody></ModalBody>
+        <ModalBody>
+          {/*
+          Autoplay Next Timer
+          Keep Screen Awake
+          Sound
+          Repeat
+          */}
+          In Development...
+        </ModalBody>
+        <ModalFooter />
       </ModalContent>
     </Modal>
   );

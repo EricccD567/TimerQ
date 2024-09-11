@@ -18,14 +18,30 @@ import timerqLogo from '../assets/TimerQ-logo.svg';
 import ResetConfirmationModal from './ResetConfirmationModal';
 import SettingsModal from './SettingsModal';
 
-function HeaderBar() {
-  const { colorMode, toggleColorMode } = useColorMode();
+interface HeaderBarProps {
+  resetTimers: () => void;
+  resetCurrentTimerIndex: () => void;
+  onPause: () => void;
+}
 
+function HeaderBar({
+  resetTimers,
+  resetCurrentTimerIndex,
+  onPause,
+}: HeaderBarProps) {
   const {
     isOpen: isResetConfirmationOpen,
     onOpen: onResetConfirmationOpen,
     onClose: onResetConfirmationClose,
   } = useDisclosure();
+
+  const handleReset: () => void = () => {
+    resetTimers();
+    resetCurrentTimerIndex();
+    onPause();
+  };
+
+  const { colorMode, toggleColorMode } = useColorMode();
 
   const {
     isOpen: isSettingsOpen,
@@ -44,6 +60,7 @@ function HeaderBar() {
         py="2"
         pos="sticky"
         top="0"
+        bgColor="inherit"
       >
         <Link href="https://github.com/EricccD567/TimerQ" isExternal>
           <Image src={timerqLogo} alt="TimerQ logo" boxSize="7" />
@@ -84,6 +101,7 @@ function HeaderBar() {
         />
       </Flex>
       <ResetConfirmationModal
+        onReset={handleReset}
         isOpen={isResetConfirmationOpen}
         onClose={onResetConfirmationClose}
       />

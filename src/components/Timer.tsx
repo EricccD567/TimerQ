@@ -1,174 +1,123 @@
+import { useContext, useRef } from 'react';
+import { Flex, Heading, IconButton, Text } from '@chakra-ui/react';
+import { TbClockEdit, TbMinus, TbPlayerStopFilled } from 'react-icons/tb';
 import Countdown from 'react-countdown';
+import { ColorPaletteContext } from '../ColorPaletteContext';
+
+interface TimerProps {
+  id: string;
+  time: Date;
+  timerRef: (el: Countdown | null) => void;
+  deleteTimer: (timerId: string) => void;
+  incrementCurrentTimerIndex: () => void;
+  onPause: () => void;
+  currentTimerId: string;
+  setSelectedTimerId: (id: string) => void;
+  onTimerSetterOpen: () => void;
+}
+
+interface Formatted {
+  days: string;
+  hours: string;
+  minutes: string;
+  seconds: string;
+}
+
+interface Renderer {
+  total: number;
+  formatted: Formatted;
+}
 
 function Timer({
+  id,
   time,
-  a,
-}: {
-  time: Date;
-  a: React.LegacyRef<Countdown> | undefined;
-}) {
-  return <Countdown date={time} autoStart={false} ref={a} />;
+  timerRef,
+  deleteTimer,
+  incrementCurrentTimerIndex,
+  onPause,
+  currentTimerId,
+  setSelectedTimerId,
+  onTimerSetterOpen,
+}: TimerProps) {
+  const colorPalette = useContext(ColorPaletteContext);
+
+  const thisTimerRef = useRef<Countdown | null>(null);
+
+  const isCurrent = id === currentTimerId;
+
+  // open click set default then open
+  const handleComplete: () => void = () => {};
+
+  const renderer = ({ total, formatted }: Renderer) => {
+    let currentColor = colorPalette.background;
+    if (total / 1000 < 30) currentColor = colorPalette.yellowStatus;
+    if (total / 1000 < 15) currentColor = colorPalette.redStatus;
+    return (
+      <Text
+        color={isCurrent ? currentColor : 'inherit'}
+        fontWeight={isCurrent ? 'semibold' : 'normal'}
+        fontSize={['3xl', '4xl', '5xl', '6xl', '7xl']}
+      >
+        {formatted.hours}:{formatted.minutes}:{formatted.seconds}
+      </Text>
+    );
+  };
+
+  // TbClockEdit, TbMinus, TbPlayerStopFilled
+
+  return (
+    <Flex
+      justify="center"
+      align="center"
+      pos="relative"
+      w={['90%', '75%', '60%', '60%', '50%']}
+      borderRadius="10"
+      borderWidth="1px"
+      borderStyle="solid"
+      borderColor={colorPalette.primary}
+      bgColor={isCurrent ? colorPalette.primary : colorPalette.background}
+    >
+      <Countdown
+        key={id}
+        ref={(el) => {
+          timerRef(el);
+          thisTimerRef.current = el;
+        }}
+        date={time}
+        daysInHours={true}
+        autoStart={false}
+        renderer={renderer}
+        onComplete={handleComplete}
+      />
+      <Flex pos="absolute" right="2.5">
+        <IconButton
+          icon={<TbPlayerStopFilled />}
+          onClick={onTimerSetterOpen}
+          aria-label="add timer"
+          colorScheme="greenStatus"
+          variant="outline"
+          size="sm"
+          fontSize="10px"
+          isRound
+        />
+      </Flex>
+    </Flex>
+  );
 }
 
 export default Timer;
 
-// add, previous, playpause, next, restart
-// cross, tick
-// stop, edit, delete
+// onStart, onPause, onStop, onTick, onComplete
+// .getApi(). start(), pause(), stop(), isPaused(), isStopped(), isCompleted()
 
-// import { useEffect, useRef, useState } from 'react';
-// import {
-//   IconButton,
-//   Button,
-//   useDisclosure,
-//   Modal,
-//   ModalOverlay,
-//   ModalContent,
-//   ModalFooter,
-//   ModalBody,
-//   HStack,
-//   PinInput,
-//   PinInputField,
-//   Text,
-// } from '@chakra-ui/react';
-// import Countdown from 'react-countdown';
-// import Timer from './components/Timer';
+// delete curr set cur to nxt or prev if nxt not exist
+// - stop
 
-// function App() {
-//   const { isOpen, onOpen, onClose } = useDisclosure();
+// stop -> nothing: only show stopbtn if playing (only dependent on timer api)
+// timer functionality such as color change from play pause etc is all api
+// need id
 
-//   const [h, setH] = useState(0);
-//   const [m, setM] = useState(0);
-//   const [s, setS] = useState(0);
-//   const handleTime = (timeString: string) => {
-//     const hoursString = timeString.slice(0, 2);
-//     setH(parseInt(hoursString));
-//     const minutesString = timeString.slice(2, 4);
-//     setM(parseInt(minutesString));
-//     const secondsString = timeString.slice(4, 6);
-//     setS(parseInt(secondsString));
-//   };
-
-//   interface timer {
-//     time: Date;
-//   }
-//   const [timers, setTimers] = useState<timer[]>([]);
-//   const handleAdd = () => {
-//     const timeSet = new Date();
-//     timeSet.setHours(timeSet.getHours() + h);
-//     timeSet.setMinutes(timeSet.getMinutes() + m);
-//     timeSet.setSeconds(timeSet.getSeconds() + s);
-
-//     setTimers([...timers, { time: timeSet }]);
-//     onClose();
-//   };
-
-//   const timersRef = useRef<(Countdown | null)[]>([]);
-//   useEffect(() => {
-//     timersRef.current = timersRef.current.slice(0, timers.length);
-//   }, [timers]);
-
-//   // checking logic here
-//   const handlePlay = () => {
-//     if (timers[0] && timersRef.current[0]) {
-//       timersRef.current[0].getApi().start();
-//     }
-//   };
-
-//   const handlePause = () => {
-//     if (timers[0] && timersRef.current[0]) {
-//       timersRef.current[0].getApi().pause();
-//     }
-//   };
-
-//   return (
-//     <>
-//       {timers.map((t, i) => (
-//         <>
-//           <Timer time={t.time} a={(el) => (timersRef.current[i] = el)} />
-//           <br />
-//         </>
-//       ))}
-//       {/* {timers.map((t, i) => (
-//         <>
-//           <Countdown
-//             date={t.time}
-//             autoStart={false}
-//             key={i}
-//             ref={(el) => (timersRef.current[i] = el)}
-//           />
-//           <br />
-//         </>
-//       ))} */}
-//       <IconButton
-//         isRound={true}
-//         variant="outline"
-//         colorScheme="teal"
-//         aria-label="Add"
-//         fontSize="20px"
-//         size="lg"
-//         icon={<IoMdAdd />}
-//         onClick={onOpen}
-//       />
-//       <IconButton
-//         isRound={true}
-//         variant="solid"
-//         colorScheme="teal"
-//         aria-label="Play"
-//         fontSize="20px"
-//         size="lg"
-//         icon={<FaPlay />}
-//         onClick={handlePlay}
-//       />
-//       <IconButton
-//         isRound={true}
-//         variant="solid"
-//         colorScheme="teal"
-//         aria-label="Pause"
-//         fontSize="20px"
-//         size="lg"
-//         icon={<FaPause />}
-//         onClick={handlePause}
-//       />
-//       <Modal isOpen={isOpen} onClose={onClose} isCentered>
-//         <ModalOverlay />
-//         <ModalContent>
-//           <ModalBody>
-//             <HStack>
-//               <PinInput
-//                 type="number"
-//                 placeholder=""
-//                 onChange={(timeString) => handleTime(timeString)}
-//               >
-//                 <PinInputField />
-//                 <PinInputField />
-//                 <Text>:</Text>
-//                 <PinInputField />
-//                 <PinInputField />
-//                 <Text>:</Text>
-//                 <PinInputField />
-//                 <PinInputField />
-//               </PinInput>
-//             </HStack>
-//           </ModalBody>
-
-//           <ModalFooter>
-//             <Button
-//               variant="outline"
-//               colorScheme="red"
-//               mr={3}
-//               onClick={onClose}
-//             >
-//               Cancel
-//             </Button>
-//             <Button variant="solid" colorScheme="teal" onClick={handleAdd}>
-//               Add
-//             </Button>
-//           </ModalFooter>
-//         </ModalContent>
-//       </Modal>
-//     </>
-//   );
-// }
-
-// export default App;
+// on stop -> buton is play
+// oncomplete -> stop(), increment here? (only if current? not necessary?
+// same idea as above built into timer not current or currplaying)
+// works for autoplay setting too
