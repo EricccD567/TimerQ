@@ -76,6 +76,7 @@ function ControlsBar({
     if (!isPlaying) {
       if (currentTimer.index === -1) {
         restartCurrentTimerIndex();
+        onPlay();
         return;
       }
       currentTimer.ref?.getApi().start();
@@ -99,7 +100,7 @@ function ControlsBar({
   };
 
   useEffect(() => {
-    if (currentTimer.index >= 0) {
+    if (currentTimer.index >= 0 && isPlaying) {
       currentTimer.ref?.getApi().start();
       onPlay();
     }

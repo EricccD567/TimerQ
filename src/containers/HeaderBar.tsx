@@ -61,6 +61,7 @@ function HeaderBar({
         pos="sticky"
         top="0"
         bgColor="inherit"
+        zIndex="2"
       >
         <Link href="https://github.com/EricccD567/TimerQ" isExternal>
           <Image src={timerqLogo} alt="TimerQ logo" boxSize="7" />

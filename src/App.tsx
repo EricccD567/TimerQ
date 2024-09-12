@@ -32,6 +32,12 @@ function App() {
     ? timers[currentTimerIndex].id
     : '';
 
+  const firstTimerId: string = timers[0] ? timers[0].id : '';
+
+  const lastTimerId: string = timers[timersCount - 1]
+    ? timers[timersCount - 1].id
+    : '';
+
   const currentTimer: CurrentTimer = {
     index: currentTimerIndex,
     ref: timersRef[currentTimerIndex] ?? null,
@@ -53,14 +59,20 @@ function App() {
           resetCurrentTimerIndex={resetCurrentTimerIndex}
           onPause={handlePause}
         />
-        <TimersList // delete and decrement unless 0 kinda thing
+        <TimersList
           timers={timers}
           editTimer={editTimer}
           deleteTimer={deleteTimer}
           timersRef={timersRef}
+          currentTimerIndex={currentTimerIndex}
           incrementCurrentTimerIndex={incrementCurrentTimerIndex}
+          decrementCurrentTimerIndex={decrementCurrentTimerIndex}
+          resetCurrentTimerIndex={resetCurrentTimerIndex}
+          isPlaying={isPlaying}
           onPause={handlePause}
           currentTimerId={currentTimerId}
+          firstTimerId={firstTimerId}
+          lastTimerId={lastTimerId}
         />
         <ControlsBar
           timersCount={timersCount}
