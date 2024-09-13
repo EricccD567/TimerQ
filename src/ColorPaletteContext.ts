@@ -5,10 +5,10 @@ import { ColorPalette } from './shared.types';
 export const ColorPaletteContext = createContext<ColorPalette>({
   text: '#06080e',
   background: '#fbfcfd',
-  primary: '#01267e',
+  primary: '#0735b0',
   secondary: '#bfd6f3',
   accent: '#90b0ef',
-  redStatus: '#f76054',
-  yellowStatus: '#e2b103',
-  greenStatus: '#4bce98',
+  redStatus: '#ab1308',
+  yellowStatus: '#b08a00',
+  greenStatus: '#238c62',
 });

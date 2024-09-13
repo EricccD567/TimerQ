@@ -8,6 +8,7 @@ import { FormattedTimerInput, TimerData } from '../shared.types';
 
 interface TimersListProps {
   timers: TimerData[];
+  timersCount: number;
   editTimer: (timerId: string, newTimeInput: string, newTime: Date) => void;
   deleteTimer: (timerId: string) => void;
   timersRef: (Countdown | null)[];
@@ -17,9 +18,6 @@ interface TimersListProps {
   resetCurrentTimerIndex: () => void;
   isPlaying: boolean;
   onPause: () => void;
-  currentTimerId: string;
-  firstTimerId: string;
-  lastTimerId: string;
 }
 
 function TimersList({
@@ -29,7 +27,7 @@ function TimersList({
   ...props
 }: TimersListProps) {
   const [selectedTimerId, setSelectedTimerId] = useState<string>('');
-  const initialTimerInput = timers.find(
+  const initialTimerInput: string | undefined = timers.find(
     (t) => t.id === selectedTimerId
   )?.timeInput;
 
@@ -48,9 +46,14 @@ function TimersList({
   };
 
   return (
-    // fix gap
     <>
-      <Flex grow="1" direction="column" align="center" gap="8" py="6">
+      <Flex
+        grow="1"
+        direction="column"
+        align="center"
+        gap={['4', '5', '6', '7', '8', '9']}
+        py="6"
+      >
         {timers.map((t, i) => (
           <Timer
             key={t.id}
@@ -58,6 +61,7 @@ function TimersList({
             index={i}
             time={t.time}
             timerRef={(el) => (timersRef[i] = el)}
+            timersCount={props.timersCount}
             deleteTimer={props.deleteTimer}
             currentTimerIndex={props.currentTimerIndex}
             incrementCurrentTimerIndex={props.incrementCurrentTimerIndex}
@@ -65,9 +69,6 @@ function TimersList({
             resetCurrentTimerIndex={props.resetCurrentTimerIndex}
             isPlaying={props.isPlaying}
             onPause={props.onPause}
-            currentTimerId={props.currentTimerId}
-            firstTimerId={props.firstTimerId}
-            lastTimerId={props.lastTimerId}
             setSelectedTimerId={(id) => setSelectedTimerId(id)}
             onTimerSetterOpen={onTimerSetterOpen}
           />

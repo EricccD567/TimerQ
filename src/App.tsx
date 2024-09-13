@@ -14,7 +14,7 @@ function App() {
   const colorPalette = useColorPalette();
 
   const { timers, addTimer, editTimer, deleteTimer, resetTimers } = useTimers();
-  const timersCount = timers.length;
+  const timersCount: number = timers.length;
 
   const timersRef = useTimersRef(timers);
 
@@ -27,16 +27,6 @@ function App() {
   } = useCurrentTimerIndex(timersCount);
 
   const { isPlaying, handlePlay, handlePause } = usePlayPause();
-
-  const currentTimerId: string = timers[currentTimerIndex]
-    ? timers[currentTimerIndex].id
-    : '';
-
-  const firstTimerId: string = timers[0] ? timers[0].id : '';
-
-  const lastTimerId: string = timers[timersCount - 1]
-    ? timers[timersCount - 1].id
-    : '';
 
   const currentTimer: CurrentTimer = {
     index: currentTimerIndex,
@@ -61,6 +51,7 @@ function App() {
         />
         <TimersList
           timers={timers}
+          timersCount={timersCount}
           editTimer={editTimer}
           deleteTimer={deleteTimer}
           timersRef={timersRef}
@@ -70,9 +61,6 @@ function App() {
           resetCurrentTimerIndex={resetCurrentTimerIndex}
           isPlaying={isPlaying}
           onPause={handlePause}
-          currentTimerId={currentTimerId}
-          firstTimerId={firstTimerId}
-          lastTimerId={lastTimerId}
         />
         <ControlsBar
           timersCount={timersCount}
