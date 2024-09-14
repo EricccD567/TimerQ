@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   Alert,
   AlertDescription,
@@ -38,6 +38,10 @@ function TimerSetterModal({
   const [timerInput, setTimerInput] = useState<string>('');
   const [timerInputErrorMsg, setTimerInputErrorMsg] = useState<string>('');
 
+  useEffect(() => {
+    setTimerInput(defaultValue);
+  }, [defaultValue]);
+
   const handleTimerInputChange: (input: string) => void = (input) =>
     setTimerInput(input);
 
@@ -60,12 +64,14 @@ function TimerSetterModal({
       return;
     }
 
+    setTimerInput(defaultValue);
     setTimerInputErrorMsg('');
     onSuccess(timerInput);
     onClose();
   };
 
   const handleCancel: () => void = () => {
+    setTimerInput(defaultValue);
     setTimerInputErrorMsg('');
     onClose();
   };
