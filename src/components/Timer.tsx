@@ -143,6 +143,7 @@ function Timer({
         fontWeight={isCurrent ? 'bold' : 'normal'}
         fontSize={['3xl', '4xl', '5xl', '6xl', '7xl', '8xl']}
         pb={['0.1rem', '0.2rem', '0.3rem', '0.4rem', '0.5rem', '0.6rem']}
+        userSelect="none"
       >
         {formatted.hours}:{formatted.minutes}:{formatted.seconds}
       </Text>
