@@ -10,13 +10,13 @@ import {
 } from '@chakra-ui/react';
 import {
   TbMoonFilled,
-  TbSettingsFilled,
+  // TbSettingsFilled,
   TbSunFilled,
   TbTrash,
 } from 'react-icons/tb';
 import timerqLogo from '../assets/TimerQ-logo.svg';
 import ResetConfirmationModal from './ResetConfirmationModal';
-import SettingsModal from './SettingsModal';
+// import SettingsModal from './SettingsModal';
 
 interface HeaderBarProps {
   resetTimers: () => void;
@@ -43,11 +43,11 @@ function HeaderBar({
 
   const { colorMode, toggleColorMode } = useColorMode();
 
-  const {
-    isOpen: isSettingsOpen,
-    onOpen: onSettingsOpen,
-    onClose: onSettingsClose,
-  } = useDisclosure();
+  // const {
+  //   isOpen: isSettingsOpen,
+  //   onOpen: onSettingsOpen,
+  //   onClose: onSettingsClose,
+  // } = useDisclosure();
 
   return (
     <>
@@ -90,7 +90,7 @@ function HeaderBar({
           fontSize="20px"
           isRound
         />
-        <IconButton
+        {/* <IconButton
           icon={<TbSettingsFilled />}
           onClick={onSettingsOpen}
           aria-label="settings"
@@ -99,14 +99,14 @@ function HeaderBar({
           size="md"
           fontSize="20px"
           isRound
-        />
+        /> */}
       </Flex>
       <ResetConfirmationModal
         onReset={handleReset}
         isOpen={isResetConfirmationOpen}
         onClose={onResetConfirmationClose}
       />
-      <SettingsModal isOpen={isSettingsOpen} onClose={onSettingsClose} />
+      {/* <SettingsModal isOpen={isSettingsOpen} onClose={onSettingsClose} /> */}
     </>
   );
 }
