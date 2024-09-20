@@ -30,12 +30,13 @@ function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
         <ModalCloseButton size="lg" />
         <ModalBody>
           {/*
-          Autoplay Next Timer
-          Keep Screen Awake
-          Sound
-          Repeat
+          Autoplay Next Timer: switch
+          Keep Screen Awake: switch
+            - https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API
+          Sound: slider
+            - increase beep volume
+          Repeat: slider
           */}
-          In Development...
         </ModalBody>
         <ModalFooter />
       </ModalContent>
